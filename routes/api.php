@@ -12,7 +12,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // 取得用戶令牌
-Route::post('/sanctum/token', function (Request $request) {
+Route::post('/login', function (Request $request) {
     $request->validate([
         'email' => 'required|email',
         'password' => 'required',
@@ -27,10 +27,14 @@ Route::post('/sanctum/token', function (Request $request) {
         ]);
     }
 
-    return $user->createToken($request->device_name)->plainTextToken;
+    return response()->json(['token' => $user->createToken($request->device_name)->plainTextToken]);
 });
 
 // 撤銷用戶令牌
-Route::post('/logout', function (Request $request) {
-    $request->user()->currentAccessToken()->delete();
+Route::delete('/logout', function (Request $request) {
+    // * 直接取得token的值
+    // * $token = $request->bearerToken();
+
+    $request->user()->currentAccessToken()?->delete();
+
 })->middleware('auth:sanctum');

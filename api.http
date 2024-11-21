@@ -7,7 +7,7 @@ Accept: application/json
 ###
 
 # 取得用戶令牌
-POST http://localhost:8000/api/sanctum/token HTTP/1.1
+POST http://localhost:8000/api/login HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 
@@ -22,7 +22,8 @@ Accept: application/json
 
 # 撤銷用戶令牌
 
-POST http://localhost:8000/api/logout
+DELETE http://localhost:8000/api/logout
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 3|gfHIHYCDrGDpcFWSFrladITA6OtFkuDpaUxYVXxe30fd4cbb
+Authorization: Bearer 19|Q1kEi32bsSWZ3e4NXeLe02KpFKz6hIexOui31Krida7be85a
+

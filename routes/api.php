@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 
 // 取得用戶資料
@@ -31,9 +31,6 @@ Route::post('/sanctum/token', function (Request $request) {
 });
 
 // 撤銷用戶令牌
-// Route::post('/logout', function (Request $request) {
-
-
-//     $user->tokens()->where('id', $tokenId)->delete();
-//     return $request->user();
-// })->middleware('auth:sanctum');
+Route::post('/logout', function (Request $request) {
+    $request->user()->currentAccessToken()->delete();
+})->middleware('auth:sanctum');

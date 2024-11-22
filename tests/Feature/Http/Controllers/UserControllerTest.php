@@ -1,7 +1,14 @@
 <?php
 
-test('example', function () {
-    $response = $this->get('/');
+use App\Models\User;
 
-    $response->assertStatus(200);
+test('fetch me', function () {
+    $this->getJson('/api/me')->assertStatus(401);
+
+    $user = User::factory()->create();
+
+    $this
+        ->actingAs($user, 'sanctum')
+        ->getJson('/api/me')
+        ->assertOk();
 });

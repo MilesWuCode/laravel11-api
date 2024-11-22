@@ -47,4 +47,14 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * Return the authenticated user's information.
+     */
+    public function me()
+    {
+        $user = auth()->user();
+
+        return response()->json($user);
+    }
 }

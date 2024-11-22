@@ -3,7 +3,7 @@
 
 use App\Models\User;
 
-it('get user', function () {
+it('fetch me', function () {
     $this->getJson('/api/user')->assertStatus(401);
 
     $user = User::factory()->create();

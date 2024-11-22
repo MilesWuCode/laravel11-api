@@ -38,3 +38,7 @@ Route::delete('/logout', function (Request $request) {
     $request->user()->currentAccessToken()?->delete();
 
 })->middleware('auth:sanctum');
+
+
+Route::get('/me', [App\Http\Controllers\UserController::class, 'me'])
+    ->middleware('auth:sanctum');

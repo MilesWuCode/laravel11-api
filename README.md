@@ -24,4 +24,7 @@ php artisan test ./tests/Feature/SanctumTest.php
 
 # 填加UserController
 php artisan make:controller UserController --api --requests --pest --model=User
+
+# 填加MeController
+php artisan make:controller MeController --api --requests --pest --model=User
 ```

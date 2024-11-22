@@ -21,4 +21,7 @@ php artisan test --testsuite=Feature --stop-on-failure
 
 # 指定測試
 php artisan test ./tests/Feature/SanctumTest.php
+
+# 填加UserController
+php artisan make:controller UserController --api --requests --pest --model=User
 ```

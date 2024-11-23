@@ -10,5 +10,11 @@ test('fetch me', function () {
     $this
         ->actingAs($user, 'sanctum')
         ->getJson('/api/me')
-        ->assertOk();
+        ->assertOk()
+        ->assertJson([
+            'data' => [
+                'id' => $user->id,
+                'name' => $user->name,
+            ],
+        ]);
 });

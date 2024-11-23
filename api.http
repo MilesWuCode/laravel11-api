@@ -3,6 +3,7 @@
 GET http://localhost:8000/api/user HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
 
 ###
 
@@ -25,5 +26,13 @@ Accept: application/json
 DELETE http://localhost:8000/api/logout
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 19|Q1kEi32bsSWZ3e4NXeLe02KpFKz6hIexOui31Krida7be85a
+Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
 
+###
+
+# 取得用戶資料
+
+GET http://localhost:8000/api/me HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27

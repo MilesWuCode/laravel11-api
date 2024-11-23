@@ -39,6 +39,5 @@ Route::delete('/logout', function (Request $request) {
 
 })->middleware('auth:sanctum');
 
-
 Route::get('/me', [App\Http\Controllers\UserController::class, 'me'])
     ->middleware('auth:sanctum');

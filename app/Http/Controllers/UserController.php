@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 
 class UserController extends Controller
@@ -53,8 +54,10 @@ class UserController extends Controller
      */
     public function me()
     {
-        $user = auth()->user();
+        $user = auth('sanctum')->user();
 
-        return response()->json($user);
+        // return response()->json($user);
+
+        return new UserResource($user);
     }
 }

@@ -27,4 +27,12 @@ php artisan make:controller UserController --api --requests --pest --model=User
 
 # 填加MeController
 php artisan make:controller MeController --api --requests --pest --model=User
+
+# Laravel Facades 自動產生 PHPDoc
+php artisan ide-helper:generate
+
+# transformation json
+php artisan make:resource UserResource
+php artisan make:resource UserCollection
+
 ```

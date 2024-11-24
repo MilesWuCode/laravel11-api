@@ -15,6 +15,8 @@ class TodoController extends Controller
      */
     public function index()
     {
+        Gate::authorize('viewAny', Todo::class);
+
         $todos = auth()->user()->todos()->paginate(5);
 
         return TodoResource::collection($todos);
@@ -50,8 +52,6 @@ class TodoController extends Controller
     public function update(UpdateTodoRequest $request, Todo $todo)
     {
         $validatedData = $request->validated();
-
-        print_r($validatedData);
 
         $todo->fill($validatedData)->save();
 

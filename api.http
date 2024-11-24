@@ -3,7 +3,7 @@
 GET http://localhost:8000/api/user HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+Authorization: Bearer 51|zRH0TzicH6A6iKCzBb6aOQahdBXF3YyFsuYCg9VQ594a61bf
 
 ###
 
@@ -26,7 +26,7 @@ Accept: application/json
 DELETE http://localhost:8000/api/logout
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+Authorization: Bearer 51|zRH0TzicH6A6iKCzBb6aOQahdBXF3YyFsuYCg9VQ594a61bf
 
 ###
 
@@ -35,7 +35,7 @@ Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
 GET http://localhost:8000/api/me HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+Authorization: Bearer 51|zRH0TzicH6A6iKCzBb6aOQahdBXF3YyFsuYCg9VQ594a61bf
 
 ###
 
@@ -44,7 +44,7 @@ Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
 GET http://localhost:8000/api/todos?page=1 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+Authorization: Bearer 51|zRH0TzicH6A6iKCzBb6aOQahdBXF3YyFsuYCg9VQ594a61bf
 
 ###
 
@@ -53,7 +53,7 @@ Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
 GET http://localhost:8000/api/todos/70 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+Authorization: Bearer 51|zRH0TzicH6A6iKCzBb6aOQahdBXF3YyFsuYCg9VQ594a61bf
 
 ###
 
@@ -62,7 +62,7 @@ Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
 DELETE http://localhost:8000/api/todos/70 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+Authorization: Bearer 51|zRH0TzicH6A6iKCzBb6aOQahdBXF3YyFsuYCg9VQ594a61bf
 
 ###
 
@@ -71,7 +71,7 @@ Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
 PATCH  http://localhost:8000/api/todos/155 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+Authorization: Bearer 51|zRH0TzicH6A6iKCzBb6aOQahdBXF3YyFsuYCg9VQ594a61bf
 
 {
     "name": "wawa2",
@@ -85,7 +85,7 @@ Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
 POST  http://localhost:8000/api/todos HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+Authorization: Bearer 51|zRH0TzicH6A6iKCzBb6aOQahdBXF3YyFsuYCg9VQ594a61bf
 
 {
     "name": "wawa2",

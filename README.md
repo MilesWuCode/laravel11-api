@@ -35,4 +35,6 @@ php artisan ide-helper:generate
 php artisan make:resource UserResource
 php artisan make:resource UserCollection
 
+# model
+php artisan make:model Todo --all
 ```

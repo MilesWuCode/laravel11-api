@@ -36,3 +36,58 @@ GET http://localhost:8000/api/me HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+
+###
+
+# 取得Todo列表
+
+GET http://localhost:8000/api/todos?page=1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+
+###
+
+# 取得Todo
+
+GET http://localhost:8000/api/todos/70 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+
+###
+
+# 刪除Todo
+
+DELETE http://localhost:8000/api/todos/70 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+
+###
+
+# 更新Todo
+
+PATCH  http://localhost:8000/api/todos/155 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+
+{
+    "name": "wawa2",
+    "completed_at": "2022-11-11 11:11:11"
+}
+
+###
+
+# 新增Todo
+
+POST  http://localhost:8000/api/todos HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 37|mXgxBM8mbEcNoetFNwsyoRTvSq5jYHn3WMb8AvqO84943b27
+
+{
+    "name": "wawa2",
+    "completed_at": "2022-11-11 11:11:11"
+}

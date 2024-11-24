@@ -54,7 +54,7 @@ class UserController extends Controller
      */
     public function me()
     {
-        $user = auth('sanctum')->user();
+        $user = auth()->user();
 
         // return response()->json($user);
 

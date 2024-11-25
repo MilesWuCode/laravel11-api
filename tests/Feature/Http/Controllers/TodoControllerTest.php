@@ -57,4 +57,8 @@ test('todo crud', function () {
     $this->deleteJson("/api/todos/{$todoId}")
         ->assertNoContent();
 
+    $this
+        ->getJson("/api/todos/{$todoId}")
+        ->assertNotFound();
+
 });

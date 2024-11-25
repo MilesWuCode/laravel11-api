@@ -40,7 +40,6 @@ it('login / logout', function () {
         ->assertJsonStructure(['token']);
 
     $this
-        ->actingAs($user, 'sanctum')
         ->delete('/api/logout')
-        ->assertOk();
+        ->assertStatus(204);
 });

@@ -16,6 +16,13 @@ class Todo extends Model
         'completed_at',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'completed_at' => 'datetime:Y-m-d H:i:s',
+        ];
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -46,3 +46,6 @@ Route::get('/me', [App\Http\Controllers\UserController::class, 'me'])
 
 Route::apiResource('todos', App\Http\Controllers\TodoController::class)
     ->middleware('auth:sanctum');
+
+Route::apiResource('posts', App\Http\Controllers\PostController::class)
+    ->middleware('auth:sanctum');

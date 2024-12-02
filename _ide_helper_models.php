@@ -17,8 +17,35 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $user_id
+ * @property string $title
+ * @property string $description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read \App\Models\User|null $user
+ * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUserId($value)
+ */
+	class Post extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $user_id
  * @property string $name
- * @property string|null $completed_at
+ * @property \Illuminate\Support\Carbon|null $completed_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User|null $user
@@ -50,6 +77,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
+ * @property-read int|null $posts_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Todo> $todos
  * @property-read int|null $todos_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens

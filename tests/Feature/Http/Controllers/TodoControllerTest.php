@@ -60,5 +60,4 @@ test('todo crud', function () {
     $this
         ->getJson("/api/todos/{$todoId}")
         ->assertNotFound();
-
 });

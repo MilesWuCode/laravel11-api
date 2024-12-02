@@ -27,11 +27,17 @@ class TodoController extends Controller
      */
     public function store(StoreTodoRequest $request)
     {
+        // * 開啓SQL查詢日誌
+        // \Illuminate\Support\Facades\DB::enableQueryLog();
+
         $validatedData = $request->validated();
 
         $todo = new Todo($validatedData);
 
         $todo->user()->associate(auth()->user())->save();
+
+        // * SQL操作寫到log檔
+        // logger(\Illuminate\Support\Facades\DB::getQueryLog());
 
         return TodoResource::make($todo);
     }

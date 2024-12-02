@@ -37,4 +37,7 @@ php artisan make:resource UserCollection
 
 # model
 php artisan make:model Todo --all
+
+# storage/app/public 軟連結 public/storage
+php artisan storage:link
 ```

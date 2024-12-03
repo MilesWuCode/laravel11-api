@@ -49,7 +49,13 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return PostData::from($post->with('user'));
+        Gate::authorize('view', $post);
+
+        // return PostData::from($post->with('user'));
+
+        $post->load('user');
+
+        return PostResource::make($post);
     }
 
     /**

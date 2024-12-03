@@ -101,7 +101,7 @@ GET http://localhost:8000/api/posts
 ?page=1
 &filter[title]=mr
 &include=user
-# &fields[posts]=id,title
+&fields[posts]=description,published_at
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer 1|y5bMcbIQo077FyACh6roLhGyhtzfnKJeDqt8sKd29b61331f

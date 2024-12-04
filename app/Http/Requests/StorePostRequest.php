@@ -28,7 +28,7 @@ class StorePostRequest extends FormRequest
             'description' => 'nullable|string',
             'cover' => 'image|mimes:jpg,jpeg,png,webp|max:512',
             // * 最多5個
-            'images' => 'required|array|max:5',
+            'images' => 'array|max:5',
             // * 每個圖片最大512kb
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:512',
         ];

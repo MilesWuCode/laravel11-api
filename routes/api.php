@@ -9,7 +9,7 @@ use Illuminate\Validation\ValidationException;
 // 取得用戶資料
 Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:sanctum');
+})->middleware(['auth:sanctum', 'cache.response']);
 
 // 取得用戶令牌
 Route::post('/login', function (Request $request) {
@@ -42,10 +42,10 @@ Route::delete('/logout', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/me', [App\Http\Controllers\UserController::class, 'me'])
-    ->middleware('auth:sanctum');
+    ->middleware(['auth:sanctum', 'cache.response']);
 
 Route::apiResource('todos', App\Http\Controllers\TodoController::class)
-    ->middleware('auth:sanctum');
+    ->middleware(['auth:sanctum', 'cache.response']);
 
 Route::apiResource('posts', App\Http\Controllers\PostController::class)
-    ->middleware('auth:sanctum');
+    ->middleware(['auth:sanctum', 'cache.response']);

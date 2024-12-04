@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        // * 註冊
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        // * 更新用戶資料
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        // * 刪除帳號
     }
 
     /**
@@ -54,6 +54,8 @@ class UserController extends Controller
      */
     public function me()
     {
+        // * 取得用戶資料
+
         $user = auth()->user();
 
         // return response()->json($user);

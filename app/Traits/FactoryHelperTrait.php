@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-
 use Spatie\Image\Image;
 
 trait FactoryHelperTrait
@@ -10,8 +9,9 @@ trait FactoryHelperTrait
     /**
      * Select a random image from a specified directory, resize it, and return its filename and base64 representation.
      *
-     * @param string $path The directory path where images are stored.
+     * @param  string  $path  The directory path where images are stored.
      * @return array An array containing the filename and base64 encoded image.
+     *
      * @throws \Exception If the path is empty or no images are found in the directory.
      */
     public function randomImage(string $path = '')
@@ -37,7 +37,7 @@ trait FactoryHelperTrait
         $file = $files[$rand];
 
         // Load the image, resize it, and encode it in base64 format
-        $image = Image::load($path . '/' . $file)
+        $image = Image::load($path.'/'.$file)
             ->width(600)
             ->height(300)
             ->base64('jpg');
@@ -45,5 +45,4 @@ trait FactoryHelperTrait
         // Return the filename and the base64 encoded image
         return [$file, $image];
     }
-
 }

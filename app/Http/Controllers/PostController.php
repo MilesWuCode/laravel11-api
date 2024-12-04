@@ -53,7 +53,7 @@ class PostController extends Controller
 
         // return PostData::from($post->with('user'));
 
-        $post->load('user');
+        $post->load(['user']);
 
         return PostResource::make($post);
     }

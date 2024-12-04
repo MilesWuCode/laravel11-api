@@ -19,11 +19,13 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'description'=> $this->whenHas('description'),
+            'description' => $this->whenHas('description'),
             'publicshed_at' => $this->whenHas('published_at'),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'user' => new UserResource($this->whenLoaded('user')),
+            'cover' => new MediaResource($this->getFirstMedia('cover')),
+            'images' => MediaResource::collection($this->getMedia('images')),
         ];
     }
 }

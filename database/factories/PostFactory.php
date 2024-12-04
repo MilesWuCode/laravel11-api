@@ -48,8 +48,19 @@ class PostFactory extends Factory
             [$file, $image] = $this->randomImage(storage_path('files'));
 
             $post->addMediaFromBase64($image)
+                ->usingName($file)
                 ->usingFileName($file)
                 ->toMediaCollection('cover');
+
+            for ($i = 0; $i < 5; $i++) {
+                echo $i;
+                [$file, $image] = $this->randomImage(storage_path('files'));
+
+                $post->addMediaFromBase64($image)
+                    ->usingName($file)
+                    ->usingFileName($file)
+                    ->toMediaCollection('images');
+            }
         });
     }
 

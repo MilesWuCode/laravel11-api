@@ -42,7 +42,7 @@ class Post extends Model implements HasMedia
             ->singleFile();
 
         $this->addMediaCollection('images')
-            ->acceptsMimeTypes(['image/*']);
+            ->acceptsMimeTypes(['image/jpeg', 'image/png']);
     }
 
     public function registerMediaConversions(?Media $media = null): void

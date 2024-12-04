@@ -39,7 +39,7 @@ class TodoController extends Controller
         // * SQL操作寫到log檔
         // logger(\Illuminate\Support\Facades\DB::getQueryLog());
 
-        return TodoResource::make($todo);
+        return new TodoResource($todo);
     }
 
     /**
@@ -49,7 +49,7 @@ class TodoController extends Controller
     {
         Gate::authorize('view', $todo);
 
-        return TodoResource::make($todo);
+        return new TodoResource($todo);
     }
 
     /**
@@ -61,7 +61,7 @@ class TodoController extends Controller
 
         $todo->fill($validatedData)->save();
 
-        return TodoResource::make($todo);
+        return new TodoResource($todo);
     }
 
     /**

@@ -18,7 +18,7 @@ class TodoResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'completed_at' => $this->completed_at,
+            'completed_at' => $this->completed_at?->format('Y-m-d H:i:s'),
             'user' => new UserResource($this->whenLoaded('user')),
         ];
     }

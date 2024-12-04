@@ -23,7 +23,6 @@ class Post extends Model implements HasMedia
         'published_at',
     ];
 
-
     protected function casts(): array
     {
         return [
@@ -39,17 +38,18 @@ class Post extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('cover')
+            ->acceptsMimeTypes(['image/jpeg', 'image/png'])
             ->singleFile();
 
         $this->addMediaCollection('images')
-            ->multiple();
+            ->acceptsMimeTypes(['image/*']);
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
         // * 轉成webp格式
         $this
-            ->addMediaConversion('webp')
+            ->addMediaConversion('md')
             ->performOnCollections('cover', 'images')
             ->format('webp')
             ->nonQueued();

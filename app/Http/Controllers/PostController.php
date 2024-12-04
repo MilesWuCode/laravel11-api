@@ -41,7 +41,7 @@ class PostController extends Controller
         $post->addMediaFromRequest('cover')->toMediaCollection('cover');
         $post->addMediaFromRequest('images')->toMediaCollection('images');
 
-        return $post;
+        return PostResource::make($post);
     }
 
     /**

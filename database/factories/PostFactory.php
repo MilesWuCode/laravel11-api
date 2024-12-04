@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Traits\FactoryHelperTrait;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PostFactory extends Factory
 {
+    use FactoryHelperTrait;
+
     /**
      * Define the model's default state.
      *
@@ -27,6 +30,28 @@ class PostFactory extends Factory
     }
 
     protected $model = Post::class;
+
+    /**
+     * Configure the model factory.
+     */
+    public function configure(): static
+    {
+        return $this->afterMaking(function (Post $post) {
+            // ...
+        })->afterCreating(function (Post $post) {
+            // $url = fake()->imageUrl(width: 600, height: 300);
+
+            // $post->addMediaFromUrl($url)
+            //     ->toMediaCollection('cover');
+
+            // * 建議改用本機生成
+            [$file, $image] = $this->randomImage(storage_path('files'));
+
+            $post->addMediaFromBase64($image)
+                ->usingFileName($file)
+                ->toMediaCollection('cover');
+        });
+    }
 
     public function notPublished(): static
     {

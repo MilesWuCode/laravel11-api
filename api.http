@@ -126,7 +126,7 @@ Accept: application/json
 Authorization: Bearer 1|y5bMcbIQo077FyACh6roLhGyhtzfnKJeDqt8sKd29b61331f
 
 {
-    "title": "test post",
+    "title": "test post"
 }
 
 ###

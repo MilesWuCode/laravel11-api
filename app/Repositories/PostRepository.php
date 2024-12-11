@@ -37,7 +37,11 @@ class PostRepository implements PostRepositoryInterface
 
     public function store(array $data)
     {
-        return Post::create($data);
+        $post = new Post($data);
+
+        $post->user()->associate(auth()->user())->save();
+
+        return $post;
     }
 
     public function update(array $data, $id)

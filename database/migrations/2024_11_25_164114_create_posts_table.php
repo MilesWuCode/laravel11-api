@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->string('title');
-            $table->text('description');
-            $table->timestamp('published_at')->nullable();
+            $table->string('title')->comment('標題');
+            $table->text('description')->default('')->comment('html內容');
+            $table->timestamp('published_at')->nullable()->comment('公布時間');
             $table->timestamps();
         });
     }

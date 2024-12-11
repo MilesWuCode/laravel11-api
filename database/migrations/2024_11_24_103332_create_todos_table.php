@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->string('name');
-            $table->timestamp('completed_at')->nullable();
+            $table->string('name')->comment(comment: '名稱');
+            $table->timestamp('completed_at')->nullable()->comment('完成時間');;
             $table->timestamps();
         });
     }

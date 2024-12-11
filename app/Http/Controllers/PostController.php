@@ -44,12 +44,12 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $postData = PostData::from($request);
+        $data = $request->safe()->only([
+            'title',
+            'content',
+        ]);
 
-        $post = Post::create($postData->toArray());
-
-        $post->addMediaFromRequest('cover')->toMediaCollection('cover');
-        $post->addMediaFromRequest('images')->toMediaCollection('images');
+        $post = $this->postService->create($data);
 
         return PostResource::make($post);
     }
@@ -60,6 +60,9 @@ class PostController extends Controller
     public function show(Post $post)
     {
         Gate::authorize('view', $post);
+
+        // * 若邏輯複雜可用Service
+        $post = $this->postService->get($post->id);
 
         $post->load(['user']);
 

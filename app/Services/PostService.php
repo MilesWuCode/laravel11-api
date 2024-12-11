@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Interfaces\PostRepositoryInterface;
-use App\Models\Post;
 
 // * 業務邏輯
 // * 調用Repository提供的數據操作
@@ -29,10 +28,20 @@ class PostService
         return $data;
     }
 
+    public function create(array $data)
+    {
+        $post = $this->postRepositoryInterface->store($data);
+
+        $post->addMediaFromRequest('cover')->toMediaCollection('cover');
+        $post->addMediaFromRequest('images')->toMediaCollection('images');
+
+        return $post;
+    }
+
     public function get(int $id)
     {
-        $data = $this->postRepositoryInterface->get($id);
+        $post = $this->postRepositoryInterface->get($id);
 
-        return $data;
+        return $post;
     }
 }

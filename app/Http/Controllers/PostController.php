@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Data\PostData;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
@@ -46,7 +45,9 @@ class PostController extends Controller
     {
         $data = $request->safe()->only([
             'title',
-            'content',
+            'description',
+            'cover',
+            'images',
         ]);
 
         $post = $this->postService->create($data);

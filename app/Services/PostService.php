@@ -32,8 +32,13 @@ class PostService
     {
         $post = $this->postRepositoryInterface->store($data);
 
-        $post->addMediaFromRequest('cover')->toMediaCollection('cover');
-        $post->addMediaFromRequest('images')->toMediaCollection('images');
+        if (array_key_exists('cover', $data)) {
+            $post->addMediaFromRequest('cover')->toMediaCollection('cover');
+        }
+
+        if (array_key_exists('images', $data)) {
+            $post->addMediaFromRequest('images')->toMediaCollection('images');
+        }
 
         return $post;
     }

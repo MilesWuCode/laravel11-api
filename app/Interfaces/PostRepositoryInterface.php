@@ -10,7 +10,7 @@ interface PostRepositoryInterface
 {
     public function list();
     public function get($id);
-    public function store(array $data);
+    public function store(array $data): Post;
     public function update(array $data, $id);
     public function delete(Post $post);
 }

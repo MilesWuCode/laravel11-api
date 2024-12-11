@@ -13,7 +13,6 @@ class Post extends Model implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
-
     use InteractsWithMedia;
 
     protected $fillable = [

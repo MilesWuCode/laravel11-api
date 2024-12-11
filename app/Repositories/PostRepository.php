@@ -35,7 +35,7 @@ class PostRepository implements PostRepositoryInterface
         return Post::findOrFail($id);
     }
 
-    public function store(array $data)
+    public function store(array $data): Post
     {
         $post = new Post($data);
 

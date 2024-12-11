@@ -46,8 +46,6 @@ class PostController extends Controller
         $data = $request->safe()->only([
             'title',
             'description',
-            'cover',
-            'images',
         ]);
 
         $post = $this->postService->create($data);

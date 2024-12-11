@@ -6,12 +6,19 @@ use App\Data\PostData;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
+use App\Interfaces\PostRepositoryInterface;
 use App\Models\Post;
 use Illuminate\Support\Facades\Gate;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class PostController extends Controller
 {
+    private PostRepositoryInterface $postRepositoryInterface;
+
+    public function __construct(PostRepositoryInterface $postRepositoryInterface)
+    {
+        $this->postRepositoryInterface = $postRepositoryInterface;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -19,12 +26,7 @@ class PostController extends Controller
     {
         Gate::authorize('viewAny', Post::class);
 
-        $data = QueryBuilder::for(Post::class)
-            ->allowedFilters(['title'])
-            ->allowedFields(['description', 'published_at'])
-            ->allowedIncludes(['user'])
-            ->select(['id', 'title', 'created_at', 'updated_at', 'user_id'])
-            ->paginate(5);
+        $data = $this->postRepositoryInterface->index();
 
         return PostResource::collection($data);
     }

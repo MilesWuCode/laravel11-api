@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\PostRepositoryInterface;
+use App\Models\Post;
 
 // * 業務邏輯
 // * 調用Repository提供的數據操作
@@ -48,5 +49,15 @@ class PostService
         $post = $this->postRepositoryInterface->get($id);
 
         return $post;
+    }
+
+    public function update(Post $post, array $data)
+    {
+        $this->postRepositoryInterface->update($post, $data);
+    }
+
+    public function delete(Post $post)
+    {
+        $this->postRepositoryInterface->delete($post);
     }
 }

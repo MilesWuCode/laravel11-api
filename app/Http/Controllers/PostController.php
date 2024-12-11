@@ -73,7 +73,14 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        print_r($post);
+        $data = $request->safe()->only([
+            'title',
+            'description',
+        ]);
+
+        $this->postService->update($post, $data);
+
+        return PostResource::make($post);
     }
 
     /**
@@ -83,7 +90,10 @@ class PostController extends Controller
     {
         Gate::authorize('delete', $post);
 
-        $post->delete();
+        // * 若邏輯複雜可用Service
+        $this->postService->delete($post);
+
+        // $post->delete();
 
         return response(null, 204);
     }

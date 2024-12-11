@@ -6,17 +6,25 @@ use App\Data\PostData;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
-use App\Interfaces\PostRepositoryInterface;
 use App\Models\Post;
+use App\Services\PostService;
 use Illuminate\Support\Facades\Gate;
+
+// * HTTP請求
+// * 調用Service
+// * Request驗證輸入
+// * Response返回輸出
+// * 調用中間件
+// * 視圖渲染
+// * 權限控制
 
 class PostController extends Controller
 {
-    private PostRepositoryInterface $postRepositoryInterface;
+    protected $postService;
 
-    public function __construct(PostRepositoryInterface $postRepositoryInterface)
+    public function __construct(PostService $postService)
     {
-        $this->postRepositoryInterface = $postRepositoryInterface;
+        $this->postService = $postService;
     }
 
     /**
@@ -26,7 +34,7 @@ class PostController extends Controller
     {
         Gate::authorize('viewAny', Post::class);
 
-        $data = $this->postRepositoryInterface->index();
+        $data = $this->postService->list();
 
         return PostResource::collection($data);
     }
@@ -53,8 +61,6 @@ class PostController extends Controller
     {
         Gate::authorize('view', $post);
 
-        // return PostData::from($post->with('user'));
-
         $post->load(['user']);
 
         return PostResource::make($post);
@@ -65,7 +71,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        print_r($post);
     }
 
     /**

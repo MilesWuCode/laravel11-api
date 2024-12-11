@@ -45,4 +45,11 @@ php artisan storage:link
 php artisan make:interface /Interfaces/PostRepositoryInterface
 php artisan make:class /Repositories/PostRepository
 php artisan make:provider RepositoryServiceProvider
+php artisan make:class /Services/PostService
+
+# 跨網域設定
+php artisan config:publish cors
+
+# 路由快取
+php artisan route:cache
 ```

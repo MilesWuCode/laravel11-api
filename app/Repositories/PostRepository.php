@@ -6,6 +6,11 @@ use App\Interfaces\PostRepositoryInterface;
 use App\Models\Post;
 use Spatie\QueryBuilder\QueryBuilder;
 
+// * 資料邏輯
+// * 負責與數據層（數據庫、ORM）交互
+// * 封裝 Eloquent 模型操作
+// * 提供基本的 CRUD 方法和複雜的查詢邏輯
+
 class PostRepository implements PostRepositoryInterface
 {
     public function __construct()
@@ -13,7 +18,7 @@ class PostRepository implements PostRepositoryInterface
         //
     }
 
-    public function index()
+    public function list()
     {
         $data = QueryBuilder::for(Post::class)
             ->allowedFilters(['title'])
@@ -40,8 +45,9 @@ class PostRepository implements PostRepositoryInterface
         return Post::whereId($id)->update($data);
     }
 
-    public function delete($id)
+    public function delete(Post $post)
     {
-        Post::destroy($id);
+        // Post::destroy($id);
+        $post->delete();
     }
 }

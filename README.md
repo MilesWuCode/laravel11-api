@@ -60,6 +60,7 @@ php artisan migrate:rollback
 docker run --name laravel11-api \
 -p 8000:8000 \
 -v $(pwd):/var/www/html \
+--network public-network \
 --restart unless-stopped \
 -d php:fpm php artisan serve --host=0.0.0.0
 ```

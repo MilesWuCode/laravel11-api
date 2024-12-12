@@ -52,4 +52,7 @@ php artisan config:publish cors
 
 # 路由快取
 php artisan route:cache
+
+# 開發時清空
+php artisan migrate:rollback
 ```

@@ -41,16 +41,20 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $data = $request->safe()->only([
-                'title',
-                'description',
-            ]);
+        $data = $request->safe()->only([
+            'title',
+            'description',
+        ]);
 
+        $post = DB::transaction(function () use ($data) {
             $post = $this->postService->create($data);
 
-            return PostResource::make($post);
+            return $post;
         });
+
+        $post->load(['user']);
+
+        return PostResource::make($post);
     }
 
     /**
@@ -88,9 +92,9 @@ class PostController extends Controller
         // * 使用交易,自動提交/還原
         DB::transaction(function () use ($post) {
             $this->postService->delete($post);
-
-            return response()->noContent();
         });
+
+        return response()->noContent();
 
         // * 使用交易,手動提交/還原
         // DB::beginTransaction();

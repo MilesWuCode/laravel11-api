@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->string('title')->comment('標題');
-            $table->text('description')->comment('html內容');
+            $table->text('description')->nullable()->comment('html內容');
             $table->timestamp('published_at')->nullable()->comment('公布時間');
             $table->timestamps();
         });

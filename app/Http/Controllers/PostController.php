@@ -64,7 +64,7 @@ class PostController extends Controller
     {
         $post = $this->postService->show($post);
 
-        $post->load(['user']);
+        $post->load(['user', 'media']);
 
         return PostResource::make($post);
     }

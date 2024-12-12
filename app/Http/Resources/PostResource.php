@@ -24,8 +24,10 @@ class PostResource extends JsonResource
             'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at?->toDateTimeString(),
             'user' => new UserResource($this->whenLoaded('user')),
-            'cover' => new MediaResource($this->getFirstMedia('cover')),
-            'images' => MediaResource::collection($this->getMedia('images')),
+            $this->mergeWhen($this->relationLoaded('media'), [
+                'cover' => new MediaResource($this->getFirstMedia('cover')),
+                'images' => MediaResource::collection($this->getMedia('images')),
+            ]),
         ];
     }
 }

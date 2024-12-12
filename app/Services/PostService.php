@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Interfaces\PostRepositoryInterface;
 use App\Models\Post;
+use Illuminate\Support\Facades\Gate;
 
 // * 業務邏輯
 // * 調用Repository提供的數據操作
@@ -24,6 +25,8 @@ class PostService
 
     public function list()
     {
+        Gate::authorize('viewAny', Post::class);
+
         $data = $this->postRepositoryInterface->list();
 
         return $data;
@@ -31,6 +34,8 @@ class PostService
 
     public function create(array $data)
     {
+        Gate::authorize('create', Post::class);
+
         $post = $this->postRepositoryInterface->store($data);
 
         if (request()->has('cover')) {
@@ -44,20 +49,27 @@ class PostService
         return $post;
     }
 
-    public function get(int $id)
+    public function show(Post $post)
     {
-        $post = $this->postRepositoryInterface->get($id);
+        Gate::authorize('view', $post);
+
+        // * 用到DB操作才會使用repository
+        // $post = $this->postRepositoryInterface->get($post->id);
 
         return $post;
     }
 
     public function update(Post $post, array $data)
     {
+        Gate::authorize('update', $post);
+
         $this->postRepositoryInterface->update($post, $data);
     }
 
     public function delete(Post $post)
     {
+        Gate::authorize('delete', $post);
+
         $this->postRepositoryInterface->delete($post);
     }
 }

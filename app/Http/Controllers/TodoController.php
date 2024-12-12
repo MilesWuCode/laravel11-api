@@ -73,6 +73,6 @@ class TodoController extends Controller
 
         $todo->delete();
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }

@@ -7,7 +7,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Services\PostService;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 // * HTTP請求
 // * 調用Service
@@ -31,8 +31,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', Post::class);
-
         $data = $this->postService->list();
 
         return PostResource::collection($data);
@@ -43,14 +41,16 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $data = $request->safe()->only([
-            'title',
-            'description',
-        ]);
+        DB::transaction(function () use ($request) {
+            $data = $request->safe()->only([
+                'title',
+                'description',
+            ]);
 
-        $post = $this->postService->create($data);
+            $post = $this->postService->create($data);
 
-        return PostResource::make($post);
+            return PostResource::make($post);
+        });
     }
 
     /**
@@ -58,10 +58,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        Gate::authorize('view', $post);
-
-        // * 若邏輯複雜可用Service
-        $post = $this->postService->get($post->id);
+        $post = $this->postService->show($post);
 
         $post->load(['user']);
 
@@ -88,13 +85,26 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        Gate::authorize('delete', $post);
+        // * 使用交易,自動提交/還原
+        DB::transaction(function () use ($post) {
+            $this->postService->delete($post);
 
-        // * 若邏輯複雜可用Service
-        $this->postService->delete($post);
+            return response()->noContent();
+        });
 
-        // $post->delete();
+        // * 使用交易,手動提交/還原
+        // DB::beginTransaction();
 
-        return response(null, 204);
+        // try {
+        //     $this->postService->delete($post);
+
+        //     DB::commit();
+
+        //     return response()->noContent();
+        // } catch (\Exception $ex) {
+        //     DB::rollBack();
+
+        //     throw $ex;
+        // }
     }
 }

@@ -38,12 +38,16 @@ class PostService
 
         $post = $this->postRepositoryInterface->store($data);
 
-        if (request()->has('cover')) {
-            $post->addMediaFromRequest('cover')->toMediaCollection('cover');
+        if (request()->hasFile('cover')) {
+            $post->addMediaFromRequest('cover')
+                ->toMediaCollection('cover');
         }
 
-        if (request()->has('images')) {
-            $post->addMediaFromRequest('images')->toMediaCollection('images');
+        if (request()->hasFile('images')) {
+            $post->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('images');
+                });
         }
 
         return $post;

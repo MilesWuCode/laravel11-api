@@ -55,4 +55,11 @@ php artisan route:cache
 
 # 開發時清空
 php artisan migrate:rollback
+
+# 測試用docker容器
+docker run --name laravel11-api \
+-p 8000:8000 \
+-v $(pwd):/var/www/html \
+--restart unless-stopped \
+-d php:fpm php artisan serve --host=0.0.0.0
 ```

@@ -52,7 +52,7 @@ class PostController extends Controller
             return $post;
         });
 
-        $post->load(['user']);
+        $post->load(['user', 'media']);
 
         return PostResource::make($post);
     }
@@ -83,7 +83,7 @@ class PostController extends Controller
             return $this->postService->update($post, $data);
         });
 
-        $post->load(['user']);
+        $post->load(['user', 'media']);
 
         return PostResource::make($post);
     }

@@ -68,6 +68,18 @@ class PostService
         Gate::authorize('update', $post);
 
         $this->postRepositoryInterface->update($post, $data);
+
+        if (request()->hasFile('cover')) {
+            $post->addMediaFromRequest('cover')
+                ->toMediaCollection('cover');
+        }
+
+        if (request()->hasFile('images')) {
+            $post->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('images');
+                });
+        }
     }
 
     public function delete(Post $post)

@@ -79,7 +79,11 @@ class PostController extends Controller
             'description',
         ]);
 
-        $this->postService->update($post, $data);
+        DB::transaction(function () use ($post, $data) {
+            return $this->postService->update($post, $data);
+        });
+
+        $post->load(['user']);
 
         return PostResource::make($post);
     }

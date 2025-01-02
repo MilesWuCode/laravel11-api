@@ -24,8 +24,11 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // 標題
             'title' => 'required|string|max:100',
+            // 內文
             'description' => 'nullable|string',
+            // 封面
             'cover' => 'image|mimes:jpg,jpeg,png,webp|max:512',
             // * 最多5個
             'images' => 'array|max:5',

@@ -54,7 +54,7 @@ class PostController extends Controller
 
         $post->load(['user', 'media']);
 
-        return PostResource::make($post);
+        return new PostResource($post);
     }
 
     /**
@@ -66,7 +66,7 @@ class PostController extends Controller
 
         $post->load(['user', 'media']);
 
-        return PostResource::make($post);
+        return new PostResource($post);
     }
 
     /**
@@ -79,13 +79,13 @@ class PostController extends Controller
             'description',
         ]);
 
-        DB::transaction(function () use ($post, $data) {
+        $post = DB::transaction(function () use ($post, $data) {
             return $this->postService->update($post, $data);
         });
 
         $post->load(['user', 'media']);
 
-        return PostResource::make($post);
+        return new PostResource($post);
     }
 
     /**

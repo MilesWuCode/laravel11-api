@@ -75,4 +75,3 @@ docker run --name laravel11-api \
 
 -   https://github.com/knuckleswtf/scribe
 -   https://github.com/dedoc/scramble
--   https://github.com/larastan/larastan

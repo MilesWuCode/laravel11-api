@@ -44,10 +44,10 @@ class PostService
         }
 
         if (request()->hasFile('images')) {
-            $post->addMultipleMediaFromRequest(['images'])
-                ->each(function ($fileAdder) {
-                    $fileAdder->toMediaCollection('images');
-                });
+            $mediaItems = $post->addMultipleMediaFromRequest(['images']);
+            foreach ($mediaItems as $fileAdder) {
+                $fileAdder->toMediaCollection('images');
+            }
         }
 
         return $post;
@@ -75,10 +75,10 @@ class PostService
         }
 
         if (request()->hasFile('images')) {
-            $post->addMultipleMediaFromRequest(['images'])
-                ->each(function ($fileAdder) {
-                    $fileAdder->toMediaCollection('images');
-                });
+            $mediaItems = $post->addMultipleMediaFromRequest(['images']);
+            foreach ($mediaItems as $fileAdder) {
+                $fileAdder->toMediaCollection('images');
+            }
         }
     }
 

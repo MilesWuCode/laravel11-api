@@ -17,4 +17,6 @@ interface PostRepositoryInterface
     public function update(Post $post, array $data);
 
     public function delete(Post $post);
+
+    public function deleteImage(Post $post, int $mediaId);
 }

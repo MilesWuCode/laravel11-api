@@ -55,4 +55,11 @@ class PostRepository implements PostRepositoryInterface
 
         $post->delete();
     }
+
+    public function deleteImage(Post $post, int $mediaId)
+    {
+        $post
+            ->getMedia('images')
+            ->findOrFail($mediaId)->delete();
+    }
 }

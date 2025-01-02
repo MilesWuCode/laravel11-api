@@ -88,4 +88,11 @@ class PostService
 
         $this->postRepositoryInterface->delete($post);
     }
+
+    public function deleteImage(Post $post, int $mediaId)
+    {
+        Gate::authorize('update', $post);
+
+        $this->postRepositoryInterface->deleteImage($post, $mediaId);
+    }
 }

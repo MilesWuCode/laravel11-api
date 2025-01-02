@@ -115,4 +115,15 @@ class PostController extends Controller
         //     throw $ex;
         // }
     }
+
+    public function deleteImage(Post $post, int $mediaId)
+    {
+        DB::transaction(function () use ($post, $mediaId) {
+            $this->postService->deleteImage($post, $mediaId);
+        });
+
+        $post->load(['user', 'media']);
+
+        return new PostResource($post);
+    }
 }

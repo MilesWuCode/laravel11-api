@@ -18,11 +18,11 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property string $title
- * @property string $description
+ * @property string|null $description
  * @property \Carbon\CarbonImmutable|null $published_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read int|null $media_count
  * @property-read \App\Models\User|null $user
  * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
@@ -36,6 +36,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUserId($value)
+ * @mixin \Eloquent
  */
 	class Post extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
@@ -61,6 +62,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Todo whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Todo whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Todo whereUserId($value)
+ * @mixin \Eloquent
  */
 	class Todo extends \Eloquent {}
 }
@@ -97,6 +99,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class User extends \Eloquent {}
 }

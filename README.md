@@ -30,6 +30,7 @@ php artisan make:controller MeController --api --requests --pest --model=User
 
 # Laravel Facades 自動產生 PHPDoc
 php artisan ide-helper:generate
+php artisan ide-helper:models -RW
 
 # transformation json
 php artisan make:resource UserResource
@@ -63,6 +64,11 @@ docker run --name laravel11-api \
 --network public-network \
 --restart unless-stopped \
 -d php:fpm php artisan serve --host=0.0.0.0
+
+
+# larastan
+./vendor/bin/phpstan analyse --memory-limit=2G
+
 ```
 
 ## wip

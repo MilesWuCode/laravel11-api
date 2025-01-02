@@ -52,7 +52,7 @@ class TodoPolicy
      */
     public function restore(User $user, Todo $todo): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -60,6 +60,6 @@ class TodoPolicy
      */
     public function forceDelete(User $user, Todo $todo): bool
     {
-        //
+        return false;
     }
 }

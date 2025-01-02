@@ -116,7 +116,7 @@ class PostController extends Controller
         // }
     }
 
-    public function deleteImage(Post $post, int $mediaId)
+    public function destroyImage(Post $post, int $mediaId)
     {
         DB::transaction(function () use ($post, $mediaId) {
             $this->postService->deleteImage($post, $mediaId);

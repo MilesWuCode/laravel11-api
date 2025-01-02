@@ -47,5 +47,8 @@ Route::get('/me', [App\Http\Controllers\UserController::class, 'me'])
 Route::apiResource('todos', App\Http\Controllers\TodoController::class)
     ->middleware(['auth:sanctum', 'cache.response']);
 
+Route::delete('/posts/{post}/image/{mediaId}', [App\Http\Controllers\PostController::class, 'destroyImage'])
+    ->middleware(['auth:sanctum', 'cache.response']);
+
 Route::apiResource('posts', App\Http\Controllers\PostController::class)
     ->middleware(['auth:sanctum', 'cache.response']);

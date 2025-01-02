@@ -64,3 +64,9 @@ docker run --name laravel11-api \
 --restart unless-stopped \
 -d php:fpm php artisan serve --host=0.0.0.0
 ```
+
+## wip
+
+-   https://github.com/knuckleswtf/scribe
+-   https://github.com/dedoc/scramble
+-   https://github.com/larastan/larastan

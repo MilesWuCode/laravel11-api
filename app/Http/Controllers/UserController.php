@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         // * 更新用戶資料
 
-        $user->fill($request->only(['name']));
+        $user->fill($request->safe()->only(['name']));
 
         $user->save();
 

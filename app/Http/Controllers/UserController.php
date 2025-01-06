@@ -64,7 +64,9 @@ class UserController extends Controller
     {
         // * 更新用戶資料
 
-        $user->update($request->validated());
+        $user->fill($request->only(['name']));
+
+        $user->save();
 
         return new UserResource($user);
     }

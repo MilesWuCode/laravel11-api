@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 
-// 取得用戶資料
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware(['auth:sanctum', 'cache.response']);
-
 // 取得用戶令牌
 Route::post('/login', function (Request $request) {
     $request->validate([
@@ -41,14 +36,24 @@ Route::delete('/logout', function (Request $request) {
 
 })->middleware('auth:sanctum');
 
+Route::post('/register', [App\Http\Controllers\UserController::class, 'store']);
+
+// 取得用戶資料
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware(['auth:sanctum', 'cache.response']);
+
 Route::get('/me', [App\Http\Controllers\UserController::class, 'me'])
+    ->middleware(['auth:sanctum', 'cache.response']);
+
+Route::patch('/me', [App\Http\Controllers\UserController::class, 'update'])
     ->middleware(['auth:sanctum', 'cache.response']);
 
 Route::apiResource('todos', App\Http\Controllers\TodoController::class)
     ->middleware(['auth:sanctum', 'cache.response']);
 
-Route::delete('/posts/{post}/image/{mediaId}', [App\Http\Controllers\PostController::class, 'destroyImage'])
+Route::apiResource('posts', App\Http\Controllers\PostController::class)
     ->middleware(['auth:sanctum', 'cache.response']);
 
-Route::apiResource('posts', App\Http\Controllers\PostController::class)
+Route::delete('/posts/{post}/image/{mediaId}', [App\Http\Controllers\PostController::class, 'destroyImage'])
     ->middleware(['auth:sanctum', 'cache.response']);

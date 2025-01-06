@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -22,7 +24,15 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        // * 註冊
+        // * 新增用戶
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return new UserResource($user);
     }
 
     /**
@@ -30,23 +40,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
-    }
+        // * 顯示用戶資料
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        // * 更新用戶資料
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        // * 刪除帳號
+        return new UserResource($user);
     }
 
     /**
@@ -58,8 +54,45 @@ class UserController extends Controller
 
         $user = auth()->user();
 
-        // return response()->json($user);
+        return new UserResource($user);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateUserRequest $request, User $user)
+    {
+        // * 更新用戶資料
+
+        $user->update($request->validated());
 
         return new UserResource($user);
+    }
+
+    public function changePassword(UpdatePasswordRequest $request)
+    {
+        // * 變更密碼
+
+        $user = auth()->user();
+
+        if (! Hash::check($request->old_password, $user->password)) {
+            return response()->json([
+                'message' => 'The old password is incorrect.',
+            ], 422);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return new UserResource($user);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(User $user)
+    {
+        // * 刪除帳號
     }
 }

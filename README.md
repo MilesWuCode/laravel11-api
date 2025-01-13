@@ -69,6 +69,11 @@ docker run --name laravel11-api \
 # larastan
 ./vendor/bin/phpstan analyse --memory-limit=2G
 
+
+# rector觀看
+vendor/bin/rector --dry-run
+# rector覆寫
+vendor/bin/rector
 ```
 
 ## wip

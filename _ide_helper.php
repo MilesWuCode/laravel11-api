@@ -13452,6 +13452,9 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
+     * @method static array validate(array $rules, ...$params)
+     * @method static array validateWithBag(string $errorBag, array $rules, ...$params)
+     * @method static bool hasValidSignature(bool $absolute = true)
      * @see \Illuminate\Http\Request
      */
     class Request {
@@ -15949,81 +15952,6 @@ namespace Illuminate\Support\Facades {
         public static function flushMacros()
         {
             \Illuminate\Http\Request::flushMacros();
-        }
-
-        /**
-         * 
-         *
-         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestValidation()
-         * @param array $rules
-         * @param mixed $params
-         * @static 
-         */
-        public static function validate($rules, ...$params)
-        {
-            return \Illuminate\Http\Request::validate($rules, ...$params);
-        }
-
-        /**
-         * 
-         *
-         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestValidation()
-         * @param string $errorBag
-         * @param array $rules
-         * @param mixed $params
-         * @static 
-         */
-        public static function validateWithBag($errorBag, $rules, ...$params)
-        {
-            return \Illuminate\Http\Request::validateWithBag($errorBag, $rules, ...$params);
-        }
-
-        /**
-         * 
-         *
-         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestSignatureValidation()
-         * @param mixed $absolute
-         * @static 
-         */
-        public static function hasValidSignature($absolute = true)
-        {
-            return \Illuminate\Http\Request::hasValidSignature($absolute);
-        }
-
-        /**
-         * 
-         *
-         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestSignatureValidation()
-         * @static 
-         */
-        public static function hasValidRelativeSignature()
-        {
-            return \Illuminate\Http\Request::hasValidRelativeSignature();
-        }
-
-        /**
-         * 
-         *
-         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestSignatureValidation()
-         * @param mixed $ignoreQuery
-         * @param mixed $absolute
-         * @static 
-         */
-        public static function hasValidSignatureWhileIgnoring($ignoreQuery = [], $absolute = true)
-        {
-            return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
-        }
-
-        /**
-         * 
-         *
-         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestSignatureValidation()
-         * @param mixed $ignoreQuery
-         * @static 
-         */
-        public static function hasValidRelativeSignatureWhileIgnoring($ignoreQuery = [])
-        {
-            return \Illuminate\Http\Request::hasValidRelativeSignatureWhileIgnoring($ignoreQuery);
         }
 
             }
@@ -22550,6 +22478,7 @@ namespace  {
      * 
      *
      * @template TCollection of static
+     * @template TModel of static
      * @template TValue of static
      * @template TValue of static
      */
@@ -22557,7 +22486,7 @@ namespace  {
          * Create and return an un-saved model instance.
          *
          * @param array $attributes
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function make($attributes = [])
@@ -22667,7 +22596,7 @@ namespace  {
          * @param mixed $operator
          * @param mixed $value
          * @param string $boolean
-         * @return \Illuminate\Database\Eloquent\TModel|null 
+         * @return TModel|null 
          * @static 
          */
         public static function firstWhere($column, $operator = null, $value = null, $boolean = 'and')
@@ -22856,7 +22785,7 @@ namespace  {
          *
          * @param array $attributes
          * @param array $values
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function firstOrNew($attributes = [], $values = [])
@@ -22870,7 +22799,7 @@ namespace  {
          *
          * @param array $attributes
          * @param array $values
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function firstOrCreate($attributes = [], $values = [])
@@ -22884,7 +22813,7 @@ namespace  {
          *
          * @param array $attributes
          * @param array $values
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function createOrFirst($attributes = [], $values = [])
@@ -22898,7 +22827,7 @@ namespace  {
          *
          * @param array $attributes
          * @param array $values
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function updateOrCreate($attributes, $values = [])
@@ -22911,7 +22840,7 @@ namespace  {
          * Execute the query and get the first result or throw an exception.
          *
          * @param array|string $columns
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
          * @static 
          */
@@ -22927,7 +22856,7 @@ namespace  {
          * @template TValue
          * @param (\Closure(): TValue)|list<string> $columns
          * @param (\Closure(): TValue)|null $callback
-         * @return \Illuminate\Database\Eloquent\TModel|TValue 
+         * @return TModel|TValue 
          * @static 
          */
         public static function firstOr($columns = [], $callback = null)
@@ -22940,7 +22869,7 @@ namespace  {
          * Execute the query and get the first result if it's the sole matching record.
          *
          * @param array|string $columns
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
          * @throws \Illuminate\Database\MultipleRecordsFoundException
          * @static 
@@ -23138,7 +23067,7 @@ namespace  {
          * Save a new model and return the instance.
          *
          * @param array $attributes
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function create($attributes = [])
@@ -23151,7 +23080,7 @@ namespace  {
          * Save a new model and return the instance without raising model events.
          *
          * @param array $attributes
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function createQuietly($attributes = [])
@@ -23164,7 +23093,7 @@ namespace  {
          * Save a new model and return the instance. Allow mass-assignment.
          *
          * @param array $attributes
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function forceCreate($attributes)
@@ -23177,7 +23106,7 @@ namespace  {
          * Save a new model instance with mass assignment without raising model events.
          *
          * @param array $attributes
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function forceCreateQuietly($attributes = [])
@@ -23269,7 +23198,7 @@ namespace  {
          * Create a new instance of the model being queried.
          *
          * @param array $attributes
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function newModelInstance($attributes = [])
@@ -23395,7 +23324,7 @@ namespace  {
         /**
          * Get the model instance being queried.
          *
-         * @return \Illuminate\Database\Eloquent\TModel 
+         * @return TModel 
          * @static 
          */
         public static function getModel()
@@ -23640,7 +23569,7 @@ namespace  {
          * Execute the query and get the first result.
          *
          * @param array|string $columns
-         * @return \Illuminate\Database\Eloquent\TValue|null 
+         * @return TValue|null 
          * @static 
          */
         public static function first($columns = [])
@@ -23653,7 +23582,7 @@ namespace  {
          * Execute the query and get the first result if it's the sole matching record.
          *
          * @param array|string $columns
-         * @return \Illuminate\Database\Eloquent\TValue 
+         * @return TValue 
          * @throws \Illuminate\Database\RecordsNotFoundException
          * @throws \Illuminate\Database\MultipleRecordsFoundException
          * @static 

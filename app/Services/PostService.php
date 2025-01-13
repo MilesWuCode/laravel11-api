@@ -16,11 +16,8 @@ use Illuminate\Support\Facades\Gate;
 
 class PostService
 {
-    private PostRepositoryInterface $postRepositoryInterface;
-
-    public function __construct(PostRepositoryInterface $postRepositoryInterface)
+    public function __construct(private readonly PostRepositoryInterface $postRepositoryInterface)
     {
-        $this->postRepositoryInterface = $postRepositoryInterface;
     }
 
     public function list()

@@ -2,7 +2,7 @@
 
 use App\Models\User;
 
-test('todo crud', function () {
+test('todo crud', function (): void {
     $this->getJson('/api/todos')
         ->assertStatus(401);
 

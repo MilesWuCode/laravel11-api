@@ -39,9 +39,7 @@ Route::delete('/logout', function (Request $request) {
 Route::post('/register', [App\Http\Controllers\UserController::class, 'store']);
 
 // 取得用戶資料
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware(['auth:sanctum', 'cache.response']);
+Route::get('/user', fn(Request $request) => $request->user())->middleware(['auth:sanctum', 'cache.response']);
 
 Route::get('/me', [App\Http\Controllers\UserController::class, 'me'])
     ->middleware(['auth:sanctum', 'cache.response']);

@@ -79,9 +79,7 @@ class PostController extends Controller
             'description',
         ]);
 
-        $post = DB::transaction(function () use ($post, $data) {
-            return $this->postService->update($post, $data);
-        });
+        $post = DB::transaction(fn() => $this->postService->update($post, $data));
 
         $post->load(['user', 'media']);
 
@@ -94,7 +92,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         // * 使用交易,自動提交/還原
-        DB::transaction(function () use ($post) {
+        DB::transaction(function () use ($post): void {
             $this->postService->delete($post);
         });
 
@@ -118,7 +116,7 @@ class PostController extends Controller
 
     public function destroyImage(Post $post, int $mediaId)
     {
-        DB::transaction(function () use ($post, $mediaId) {
+        DB::transaction(function () use ($post, $mediaId): void {
             $this->postService->deleteImage($post, $mediaId);
         });
 

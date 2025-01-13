@@ -3,7 +3,7 @@
 
 use App\Models\User;
 
-it('fetch me', function () {
+it('fetch me', function (): void {
     $this->getJson('/api/user')->assertStatus(401);
 
     $user = User::factory()->create();
@@ -14,7 +14,7 @@ it('fetch me', function () {
         ->assertOk();
 });
 
-it('login / logout', function () {
+it('login / logout', function (): void {
     $this
         ->postJson('/api/login', [
             'email' => 'wrong@email.com',

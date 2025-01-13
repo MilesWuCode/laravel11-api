@@ -33,7 +33,7 @@ trait FactoryHelperTrait
         }
 
         // Select a random image file
-        $rand = rand(0, count($files) - 1);
+        $rand = random_int(0, count($files) - 1);
         $file = $files[$rand];
 
         // Load the image, resize it, and encode it in base64 format

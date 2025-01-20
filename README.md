@@ -80,3 +80,5 @@ vendor/bin/rector
 
 -   https://github.com/knuckleswtf/scribe
 -   https://github.com/dedoc/scramble
+-   https://github.com/lorisleiva/laravel-actions
+-   https://github.com/bavix/laravel-wallet

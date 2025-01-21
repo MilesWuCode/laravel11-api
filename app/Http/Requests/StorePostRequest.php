@@ -30,9 +30,8 @@ class StorePostRequest extends FormRequest
             'description' => 'nullable|string',
             // 封面
             'cover' => 'image|mimes:jpg,jpeg,png,webp|max:512',
-            // * 最多5個
+            // 最多5個, 每個圖片最大512kb
             'images' => 'array|max:5',
-            // * 每個圖片最大512kb
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:512',
         ];
     }

@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Services\PostService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 // * HTTP請求
@@ -27,9 +28,11 @@ class PostController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 列表
+     *
+     * 顯示Post及頁碼
      */
-    public function index()
+    public function index(Request $request)
     {
         $data = $this->postService->list();
 
@@ -37,7 +40,9 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 新增
+     *
+     * 新增一個Post
      */
     public function store(StorePostRequest $request)
     {
@@ -58,7 +63,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 顯示
      */
     public function show(Post $post)
     {
@@ -70,7 +75,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
@@ -79,7 +84,7 @@ class PostController extends Controller
             'description',
         ]);
 
-        $post = DB::transaction(fn() => $this->postService->update($post, $data));
+        $post = DB::transaction(fn () => $this->postService->update($post, $data));
 
         $post->load(['user', 'media']);
 
@@ -87,7 +92,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 刪除
      */
     public function destroy(Post $post)
     {
@@ -114,6 +119,10 @@ class PostController extends Controller
         // }
     }
 
+    /**
+     * 刪除圖片
+     * collection: image
+     */
     public function destroyImage(Post $post, int $mediaId)
     {
         DB::transaction(function () use ($post, $mediaId): void {

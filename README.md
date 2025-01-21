@@ -74,11 +74,15 @@ docker run --name laravel11-api \
 vendor/bin/rector --dry-run
 # rector覆寫
 vendor/bin/rector
+
+# scramble
+# http://localhost:8000/docs/api
+# http://localhost:8000/docs/api.json
 ```
 
 ## wip
 
--   https://github.com/knuckleswtf/scribe
 -   https://github.com/dedoc/scramble
+-   https://github.com/knuckleswtf/scribe
 -   https://github.com/lorisleiva/laravel-actions
 -   https://github.com/bavix/laravel-wallet

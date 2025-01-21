@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Dedoc\Scramble\Scramble;
+use Dedoc\Scramble\Support\Generator\OpenApi;
+use Dedoc\Scramble\Support\Generator\SecurityScheme;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +25,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // * scramble 填加 Authorization 提示
+        Scramble::afterOpenApiGenerated(function (OpenApi $openApi) {
+            $openApi->secure(
+                SecurityScheme::http('bearer')
+            );
+        });
+
+        // * scramble 預設 local 可以進入
+        Gate::define('viewApiDocs', function (User $user) {
+            // return in_array($user->email, ['admin@app.com']);
+            return false;
+        });
+
         // * https://laravel-news.com/shouldbestrict
         Model::shouldBeStrict();
 

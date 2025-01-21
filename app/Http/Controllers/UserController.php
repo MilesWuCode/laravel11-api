@@ -20,50 +20,45 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 註冊
      */
     public function store(StoreUserRequest $request)
     {
-        // * 新增用戶
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+        /**
+         * @status 201
+         */
         return new UserResource($user);
     }
 
     /**
-     * Display the specified resource.
+     * 顯示用戶資料
      */
     public function show(User $user)
     {
-        // * 顯示用戶資料
-
         return new UserResource($user);
     }
 
     /**
-     * Return the authenticated user's information.
+     * 取得用戶資料
      */
     public function me()
     {
-        // * 取得用戶資料
-
         $user = auth()->user();
 
         return new UserResource($user);
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新用戶資料
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        // * 更新用戶資料
-
         $user->fill($request->safe()->only(['name']));
 
         $user->save();

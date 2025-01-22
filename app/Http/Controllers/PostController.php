@@ -43,6 +43,7 @@ class PostController extends Controller
              */
             'filter[title]' => 'string',
 
+            // * WIP
             // 'fields[posts]' => 'string',
 
             /**
@@ -52,21 +53,28 @@ class PostController extends Controller
              */
             'include' => 'string',
 
-            'sort' => 'string',
-
             /**
              * 頁數
              *
              * @default 1
              */
-            'page' => 'numeric',
+            'page' => 'integer|min:1',
 
             /**
              * 筆數
              *
              * @default 15
              */
-            'pre_page' => 'numeric',
+            'pre_page' => 'integer|min:1',
+
+            /**
+             * 排序
+             *
+             * id,title
+             *
+             * @default -id
+             */
+            'sort' => 'string',
         ]);
 
         $data = $this->postService->list();

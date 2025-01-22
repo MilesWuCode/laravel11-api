@@ -67,9 +67,9 @@ class AuthController extends Controller
         // * 直接取得token的值
         // * $token = $request->bearerToken();
 
-        $request->user()->currentAccessToken()?->delete();
+        $request->user()?->currentAccessToken()->delete();
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     /**

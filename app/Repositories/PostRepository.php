@@ -31,7 +31,7 @@ class PostRepository implements PostRepositoryInterface
             // include
             ->allowedIncludes(['user'])
             // page
-            ->paginate(request()->query('pre_page', 15))
+            ->paginate(intval(request()->query('pre_page', '15')))
             // query
             ->appends(request()->query());
 

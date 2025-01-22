@@ -37,6 +37,36 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+        $request->validate([
+            /**
+             * 查詢
+             */
+            'filter[title]' => 'string',
+
+            // 'fields[posts]' => 'string',
+
+            /**
+             * 關聯
+             *
+             * user
+             */
+            'include' => 'string',
+
+            /**
+             * 頁數
+             *
+             * @default 1
+             */
+            'page' => 'numeric',
+
+            /**
+             * 筆數
+             *
+             * @default 15
+             */
+            'pre_page' => 'numeric',
+        ]);
+
         $data = $this->postService->list();
 
         return PostResource::collection($data);
@@ -78,7 +108,7 @@ class PostController extends Controller
     }
 
     /**
-     * 更新
+     * 修改
      */
     public function update(UpdatePostRequest $request, Post $post)
     {

@@ -16,6 +16,10 @@ class CacheResponse
      */
     public function handle(Request $request, Closure $next, int $minutes = 5): Response
     {
+        if (app()->environment('local')) {
+            return $next($request);
+        }
+
         if ($request->method() !== 'GET') {
             return $next($request);
         }

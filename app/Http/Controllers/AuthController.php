@@ -83,7 +83,7 @@ class AuthController extends Controller
     }
 
     /**
-     * 更新
+     * 修改
      */
     public function update(UpdateAuthRequest $request)
     {

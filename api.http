@@ -99,12 +99,12 @@ Authorization: Bearer 1|CwswZrmRBw8wTFRUwQxXlDLJdHmqjInVnOrV9l9J2fa6eced
 
 GET http://localhost:8000/api/posts
 ?page=1
-&filter[title]=mr
+&filter[title]=123
 &include=user
 &fields[posts]=description,published_at
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 1|CwswZrmRBw8wTFRUwQxXlDLJdHmqjInVnOrV9l9J2fa6eced
+Authorization: Bearer 2|zfCbxUdkhXmRufqMEJStwhkrRjMXB2zFN0FjE2cw7d4fe31c
 
 
 ###

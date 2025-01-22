@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Gate;
 class TodoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 列表
      */
     public function index()
     {
@@ -26,7 +26,7 @@ class TodoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 新增
      */
     public function store(StoreTodoRequest $request)
     {
@@ -46,7 +46,7 @@ class TodoController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 顯示
      */
     public function show(Todo $todo)
     {
@@ -56,7 +56,7 @@ class TodoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 修改
      */
     public function update(UpdateTodoRequest $request, Todo $todo)
     {
@@ -68,7 +68,7 @@ class TodoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 刪除
      */
     public function destroy(Todo $todo)
     {

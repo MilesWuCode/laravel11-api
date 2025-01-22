@@ -26,17 +26,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // * scramble 填加 Authorization 提示
-        Scramble::afterOpenApiGenerated(function (OpenApi $openApi) {
+        Scramble::afterOpenApiGenerated(function (OpenApi $openApi): void {
             $openApi->secure(
                 SecurityScheme::http('bearer')
             );
         });
 
         // * scramble 預設 local 可以進入
-        Gate::define('viewApiDocs', function (User $user) {
+        Gate::define('viewApiDocs', fn(User $user) =>
             // return in_array($user->email, ['admin@app.com']);
-            return false;
-        });
+            false);
 
         // * https://laravel-news.com/shouldbestrict
         Model::shouldBeStrict();

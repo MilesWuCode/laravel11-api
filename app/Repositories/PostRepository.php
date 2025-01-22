@@ -23,11 +23,16 @@ class PostRepository implements PostRepositoryInterface
     public function list()
     {
         $data = QueryBuilder::for(Post::class)
-            ->allowedFields(['description', 'publicshed_at'])
+            // search
             ->allowedFilters(['title'])
-            ->defaultSort(['-id'])
+            // sort
+            ->defaultSort('-id')
+            ->allowedSorts('id', 'title')
+            // include
             ->allowedIncludes(['user'])
+            // page
             ->paginate(request()->query('pre_page', 15))
+            // query
             ->appends(request()->query());
 
         return $data;

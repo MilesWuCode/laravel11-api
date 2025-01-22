@@ -52,6 +52,8 @@ class PostController extends Controller
              */
             'include' => 'string',
 
+            'sort' => 'string',
+
             /**
              * 頁數
              *

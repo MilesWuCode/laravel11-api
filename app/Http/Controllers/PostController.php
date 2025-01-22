@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\DB;
 // * 視圖渲染
 // * 權限控制
 
+/**
+ * @tags 03.Post
+ */
 class PostController extends Controller
 {
     protected $postService;
@@ -121,6 +124,7 @@ class PostController extends Controller
 
     /**
      * 刪除圖片
+     *
      * collection: image
      */
     public function destroyImage(Post $post, int $mediaId)

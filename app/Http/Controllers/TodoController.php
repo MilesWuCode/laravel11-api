@@ -8,6 +8,9 @@ use App\Http\Resources\TodoResource;
 use App\Models\Todo;
 use Illuminate\Support\Facades\Gate;
 
+/**
+ * @tags 02.Todo
+ */
 class TodoController extends Controller
 {
     /**

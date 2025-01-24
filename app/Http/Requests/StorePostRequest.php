@@ -24,13 +24,21 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 標題
+            /**
+             * 標題
+             */
             'title' => 'required|string|max:100',
-            // 內文
+            /**
+             * 內文
+             */
             'description' => 'nullable|string',
-            // 封面
+            /**
+             * 封面
+             */
             'cover' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:512',
-            // 最多5個, 每個圖片最大512kb
+            /**
+             * 最多5個, 每個圖片最大512kb
+             */
             'images' => 'array|max:5',
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:512',
         ];

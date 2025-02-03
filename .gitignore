@@ -24,3 +24,7 @@ yarn-error.log
 
 /public/media
 /storage/files
+
+_ide_helper_models.php
+_ide_helper.php
+.phpstorm.meta.php

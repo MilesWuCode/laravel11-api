@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V2;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTodoRequest;
 use App\Http\Requests\UpdateTodoRequest;
 use App\Http\Resources\TodoResource;
 use App\Models\Todo;
+use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Support\Facades\Gate;
 
-/**
- * @tags 02.Todo
- */
+#[Group(name: 'Todo', weight: 1)]
 class TodoController extends Controller
 {
     /**

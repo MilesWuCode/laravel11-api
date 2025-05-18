@@ -17,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // * 預設忽略,因為多版本
+        Scramble::ignoreDefaultRoutes();
     }
 
     /**
@@ -26,14 +27,27 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // * scramble 填加 Authorization 提示
-        Scramble::afterOpenApiGenerated(function (OpenApi $openApi): void {
-            $openApi->secure(
-                SecurityScheme::http('bearer')
+        Scramble::configure()
+            ->withDocumentTransformers(function (OpenApi $openApi) {
+                $openApi->secure(
+                    SecurityScheme::http('bearer')
+                );
+            });
+
+        // * 多版本
+        Scramble::registerApi('v1', ['api_path' => 'api/v1'])
+            ->expose(
+                ui: '/docs/v1/api',
+                document: '/docs/v1/openapi.json',
             );
-        });
+
+        Scramble::registerApi('v2', ['api_path' => 'api/v2'])->expose(
+            ui: '/docs/v2/api',
+            document: '/docs/v2/openapi.json',
+        );
 
         // * scramble 預設 local 可以進入
-        Gate::define('viewApiDocs', fn(User $user) =>
+        Gate::define('viewApiDocs', fn (User $user) =>
             // return in_array($user->email, ['admin@app.com']);
             false);
 

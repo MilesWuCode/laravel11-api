@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V2;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Services\PostService;
+use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,9 +20,7 @@ use Illuminate\Support\Facades\DB;
 // * 視圖渲染
 // * 權限控制
 
-/**
- * @tags 03.Post
- */
+#[Group(name: 'Post', weight: 2)]
 class PostController extends Controller
 {
     protected $postService;
@@ -70,9 +70,11 @@ class PostController extends Controller
             /**
              * 排序
              *
-             * id,title
+             * @var string
              *
              * @default -id
+             *
+             * @example id,title
              */
             'sort' => 'string',
         ]);

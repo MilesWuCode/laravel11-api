@@ -1,6 +1,6 @@
-# laravel11-api
+# laravel12-api
 
-https://github.com/MilesWuCode/laravel11-api
+https://github.com/MilesWuCode/laravel12-api
 
 ## 啓動
 

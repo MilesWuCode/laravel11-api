@@ -22,8 +22,11 @@ class StoreAuthRequest extends FormRequest
     public function rules(): array
     {
         return [
+            /** @example John Doe */
             'name' => ['required', 'string', 'max:255'],
+            /** @example johndoe@email.com */
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            /** @example password */
             'password' => ['required', 'string', 'min:8'],
         ];
     }

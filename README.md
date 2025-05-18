@@ -2,7 +2,19 @@
 
 https://github.com/MilesWuCode/laravel11-api
 
-## 指令
+## 啓動
+
+```bash
+cp .env.example .env
+
+php artisan k:g
+
+touch database/database.sqlite
+
+php artisan migrate
+```
+
+## 常用指令
 
 ```bash
 # 安裝 Laravel Sanctum
